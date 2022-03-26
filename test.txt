@@ -1,0 +1,60 @@
+var io = require('socket.io')(server);
+var mongoose = require('mongoose');
+const { stringify } = require('querystring');
+const { Schema } = mongoose;
+
+
+var clients=0;
+
+var url = "mongodb+srv://giap92446:Phanhoanggia@cluster0.3cwko.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+mongoose.connect(url,{useNewUrlParser: true})
+.then(() => {
+    console.log("Connect database success!!");
+})
+.catch((err) => {
+    throw new Error(err);
+})
+
+/* const personSchema = Schema({
+    name: String,
+    sdt: Number
+});
+
+const Story = mongoose.model("Story",personSchema);
+const author = new Story({
+    name: "Phan Hoang Gia",
+    sdt: "0939760757"
+})
+
+author.save(); */
+
+
+io.on("connection", function(socket) {
+    /* Client connecting */
+    /* clients++; */
+
+    /* id -> client */
+    console.log(`${socket.id} is connection`);
+
+    /* Client connection */
+    /* io.emit("clientConnection",{numberClients: clients}); */
+
+    /* on event join-room */
+    socket.on('join-room',function() {
+        console.log(`${socket.id} is connect room`);
+        io.emit('message',`${socket.id} is connecting room`);
+    });
+
+    /* on event leave-room */
+    socket.on('leave-room',function(){
+        console.log(`${socket.id} is leave room`);
+        io.emit('message',`${socket.id} is leaving room`);
+    });
+
+    /* Client disconnect */
+    socket.on("disconnect", function() {
+        clients--;
+        io.emit('notification',`${socket} is leave room`);
+    });
+})

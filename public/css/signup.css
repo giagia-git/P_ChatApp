@@ -1,0 +1,32 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+form {
+    margin: auto;
+    border: 1px solid grey;
+    padding: 50px 2.5em;
+    margin-top: 8em;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+}
+
+.form-group {
+    margin: 24px 0;
+}
+
+#form-title {
+    text-align: center;
+    font-size: 2em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Demo chat realtime NodeJS</legend>
+        <input type="text" id="username" name="username" value="" placeholder="Enter name">
+        <br>
+        <div id="content"></div>
+    
+        <input id="message" value="" placeholder="Write something..">
+        <br>
+        <button id="sendMessage">SEND</button>
+    </fieldset>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io('localhost:3000');
+        var btn = document.getElementById('sendMessage');
+        var yourName = document.getElementById('username');
+        var mess = document.getElementById('message');
+        var content = document.getElementById('content');
+
+        btn.addEventListener("click", function() {
+            if(yourName.value == '' || mess.value == '') {
+                alert("Alert enter name and message!!");
+            } else {
+                socket.emit("send",{yourName: yourName.value,mess: mess.value});
+            }
+        });
+
+        socket.on("send",function(data) {
+            var div = document.createElement("div");
+            div.append(`${data.yourName}: ${data.mess}`);
+            content.append(div);
+            mess.value="";
+        })
+    </script>
+</body>
+</html>
