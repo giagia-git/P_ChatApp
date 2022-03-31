@@ -38,7 +38,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io('localhost:3000');
-        const params = new URL(window.location).searchParams;
+        const params = /* new URL(window.location).searchParams ||  */new URLSearchParams(window.location);
         const btnJoinchat = document.getElementById('btn-joinchat');
         const room = document.forms['form-room']['room'].value;
         const username = document.getElementById('username');
