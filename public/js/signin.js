@@ -76,11 +76,3 @@ showPassword.addEventListener('click', function() {
         password.type = "password";
     }
 })
-
-form.addEventListener('submit', function(e) {
-    if(flagAccount && flagPassword) {
-        
-    } else {
-        e.preventDefault();
-    }
-})

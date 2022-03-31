@@ -1,0 +1,137 @@
+.container-fluid {
+    padding: 5em 30em;
+}
+
+.title {
+    width: 100%;
+    height: 5em;
+    background-color: rgb(9, 86, 138);
+    display: block;
+    position: relative;
+}
+
+#title-description {
+    margin-top: 1em;
+    margin-left: 7em;
+    float: left;
+}
+
+#icon-title {
+    background-color: cover;
+    color: white;
+}
+
+#content-title {
+    font-size: 2.5em;
+    color: white;
+}
+
+#leave-room {
+    float: right;
+    margin: 2em 5em;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(226, 226, 226);
+    color: rgb(9, 86, 138);
+}
+
+/* ----menu----- */
+.menu {
+    height: 30em;
+    padding: 1em 1em;
+    background-color:rgb(72, 110, 160);
+    overflow-y: scroll;;
+}
+
+.list-group-item {
+    background-color: rgb(72, 110, 160);
+    color: white;
+    border: none;
+    font-size: 18px;
+}
+
+.menu > .list-group > .menu-item {
+    padding-left: 2.5em;
+    color: white;
+    font-size: 17px;
+}
+
+/* ---list-message----- */
+
+.list-message {
+    height: 30em;
+    background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
+    padding: 1em;
+    width: 100%;
+}
+
+.list-message > .list-message-item {
+    margin: 2em 0;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 100%;
+}
+
+#list-message-ul {
+    margin: 10px 0;
+    background-color: rgb(232, 235, 236);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#list-message-item-name {
+    color: rgb(50, 104, 223);
+    margin-right: 5px;
+}
+
+#list-message-item-date {
+    color:rgb(152, 163, 170);
+}
+
+#list-message-item-content {
+    color: black;
+    word-wrap: break-word;
+}
+
+li {
+    list-style: none;
+}
+
+.myColor {
+    margin: 5px 0;
+}
+
+/* ----message----- */
+.message {
+    background-color: rgb(9, 86, 138);
+    height: 5em;
+    padding: 1em 3em;
+    width: 100%;
+}
+
+#input-message {
+    width: 79%;
+    height: 2.5em;
+    border-radius: 2px;
+    padding-left: 10px;
+    border: none;
+}
+
+#input-message:hover {
+    border: rgb(9, 86, 138);
+}
+
+#send-message {
+    width: 20%;
+    background-color: rgb(226, 226, 226);
+    color: rgb(9, 86, 138);
+    height: 2.5em;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
