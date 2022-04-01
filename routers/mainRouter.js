@@ -22,6 +22,10 @@ router.get('/404', function(req,res) {
     res.sendFile(path.join(__dirname,"../views/404.html"));
 })
 
+router.get('/api/users',function(req,res) {
+    res.json({message: "hoho"});
+})
+
 router.post('/formSignin',async function(req,res,next) {
     let flagCheckSignin = false;
     const listUser = await User.find({});
@@ -58,6 +62,11 @@ router.post('/formSignup',async function(req,res,next) {
         })
     }
     res.sendFile(path.join(__dirname,"/views/signin.html"));
+})
+
+router.get('/api/users',async function(req,res,next) {
+    const docs = await User.find({});
+    res.join(docs);
 })
 
 
