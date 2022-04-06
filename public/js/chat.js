@@ -5,16 +5,20 @@
         const listUseronline = document.getElementById('list-user-online');
         const listMessageuser = document.getElementById('list-message-group');
         const listMessage = document.querySelector('.list-message');
+        const chatMessage = document.querySelectorAll('#list-message-ul');
 
-        function addMessageuser(res) {
+        const nameRoom = document.getElementById('name-room');
+        const btnLeave = document.getElementById('leave-room');
+
+        function addMessageuser(username,timeNow,message) {
             const ul = document.createElement('ul');
             const li = document.createElement('li');
             const name = document.createElement('span');
             const time = document.createElement('span');
             const liMessage = document.createElement('li');
-            name.textContent = res.myName;
-            time.textContent = res.time;
-            liMessage.textContent = res.inputMessage;
+            name.textContent = username;
+            time.textContent = timeNow;
+            liMessage.textContent = message;
             ul.setAttribute('id','list-message-ul')
             name.setAttribute('id',"list-message-item-name")
             time.setAttribute('id',"list-message-item-date");
@@ -25,48 +29,41 @@
             ul.appendChild(liMessage);
             listMessageuser.append(ul);
         }
-
-        function addUser(data) {
+        
+        function addUser(username) {
             const li = document.createElement('li');
             li.classList.add('list-group-item');
             li.classList.add('menu-item');
-            li.textContent = data.name;
+            li.textContent = username;
             listUseronline.appendChild(li);
         }
-
-        let myData=null;
+        
         sendMessage.addEventListener('click', function(e) {
-            socket.emit('sendMessage',{myData: myData, inputMessage: inputMessage.value});
+            socket.emit('sendMessage',{inputMessage: inputMessage.value});
             inputMessage.value="";
         })
 
-        const chatMessage = document.querySelectorAll('#list-message-ul');
+        const params = new URL(window.location).searchParams;
+        const username = params.get('username');
+        const room = params.get('room');
 
-        socket.on("receiveMessage",function(res) {
-            addMessageuser(res);
-            listMessage.scrollTop = listMessage.scrollHeight;  
-        })
+        btnLeave.addEventListener('click', function(e) {
+            const leaveRoom = confirm('Are you sure want to leave the chatroom?');
+            if(leaveRoom) {
+                console.log("Leave");
+                window.location.assign(`/room?username=${username}`);
+            } else {
 
-        socket.on("send", function(data) {
-            addUser(data);
-            if(!myData) {
-                myData = data;
             }
         })
 
-        socket.on("eventJoin", function(data) {
-            console.log(data);
+        socket.on("receiveMessage",({username,timeNow,message}) => {
+            addMessageuser(username,timeNow,message);
+            listMessage.scrollTop = listMessage.scrollHeight;
         })
+        socket.on("roomUsers", ({room,username}) => {
+            nameRoom.textContent = room;
+            addUser(username);
+        });
 
-        socket.on('userDisconnect', function(data) {
-
-        })
-
-        /* const url = 'https://test/com?x=a&y=b';
-        function getUrlVars(url) {
-            var vars = {};
-            var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                vars[key] = value;
-            });
-            return vars;
-        } */
+        socket.emit('joinRoom',{username: username,room: room});

@@ -1,4 +1,4 @@
-function addMessageuser(username,timeNow,message) {
+/* function addMessageuser(username,timeNow,message) {
     const ul = document.createElement('ul');
     const li = document.createElement('li');
     const name = document.createElement('span');
@@ -31,4 +31,4 @@ function addUser(username) {
 sendMessage.addEventListener('click', function(e) {
     socket.emit('sendMessage',{inputMessage: inputMessage.value});
     inputMessage.value="";
-})
+}) */

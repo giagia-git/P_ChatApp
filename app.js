@@ -5,9 +5,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var cors = require('cors');
 require('dotenv').config();
-const mongoose = require('mongoose');
-require('./database/connectdb');
-const userSchema = require('./database/schemas/user');
+
 var io = require('socket.io')(server);
 const {
     userJoin,
@@ -17,14 +15,11 @@ const {
 } = require('./utils/users');
 const formatMessage = require('./utils/messages'); 
 var port = process.env.PORT || 3000;
-let accountSignin = null;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
-
-const User = mongoose.model("InformationUser",userSchema);
 
 const mainRouter = require('./routers/mainRouter');
 
@@ -38,7 +33,6 @@ const AppName = "Chatting";
 
 /* -----------_Socket.io----------- */
 io.on("connection", function(socket) {
-    console.log(socket.id + " vao phong chat");
 
     // join room
     socket.on("joinRoom", ({username,room}) => {

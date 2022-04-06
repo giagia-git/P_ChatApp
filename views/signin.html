@@ -11,7 +11,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <form action="/room">
+            <form action="/formSignin" method="post">
                 <div class="form-group">
                     <h3 id="form-title">Đăng nhập</h3>
                 </div>
@@ -41,14 +41,9 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
     <script language="javascript" src="/js/signin.js"></script>
     <script>
-        const socket = io('localhost:3000');
-        var form = document.querySelector('form');
-        form.addEventListener('click', function(e) {
-        
-        });
+        sessionStorage.clear();
     </script>
 </body>
 </html>
