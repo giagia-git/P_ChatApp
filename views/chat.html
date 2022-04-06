@@ -92,11 +92,11 @@
             listUseronline.appendChild(li);
         }
         
-        sendMessage.addEventListener('click', function(e) {
+/*         sendMessage.addEventListener('click', function(e) {
             socket.emit('sendMessage',{inputMessage: inputMessage.value});
             inputMessage.value="";
         })
-
+ */
         const params = new URL(window.location).searchParams;
         const room = params.get('room');
         const account = sessionStorage.getItem('account');
