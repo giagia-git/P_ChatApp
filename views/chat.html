@@ -110,6 +110,15 @@
             }
         })
 
+        sendMessage.addEventListener('keypress', function(e) {
+            if(e.keyCode === 13) {
+                if(inputMessage !== "") {
+                    socket.emit('sendMessage',{inputMessage: inputMessage.value});
+                    inputMessage.value="";
+                }
+            } 
+        })
+
         socket.on("receiveMessage",({username,timeNow,message}) => {
             addMessageuser(username,timeNow,message);
             listMessage.scrollTop = listMessage.scrollHeight;
