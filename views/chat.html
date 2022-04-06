@@ -111,7 +111,8 @@
         })
 
         sendMessage.addEventListener('keypress', function(e) {
-            if(e.keyCode === 13) {
+            console.log(`keypress event.keyCode: ${e.keyCode}`);
+            if(e.keyCode === 'Enter') {
                 if(inputMessage !== "") {
                     socket.emit('sendMessage',{inputMessage: inputMessage.value});
                     inputMessage.value="";
