@@ -114,7 +114,7 @@
 
         inputMessage.addEventListener('keyup', function(e) {
             if(e.keyCode === 13) {
-                if(inputMessage !== "") {
+                if(inputMessage.value !== "") {
                     e.preventDefault();
                     socket.emit('sendMessage',{inputMessage: inputMessage.value});
                     inputMessage.value="";
